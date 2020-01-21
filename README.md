@@ -8,12 +8,14 @@ $`docker pull mcr.microsoft.com/mssql/server`
 $ `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=asdf1234$$$$' -p 1433:1433 -v sqlvolume:/var/opt/mssql -d mcr.microsoft.com/mssql/server:2017-CU8-ubuntu`
 
 **username:** `sa`
+
 **password:** `asdf1234$$$$`
 
 While that's building go get yourself an SQL editor that works with MSSQL DBeaver is open source and cross platform. 
 https://dbeaver.io/download/
 
 **List your containers to find the container ID**
+
 $`docker ps`
 
     warren@asus:~/Sites/olive$ docker ps
@@ -21,6 +23,7 @@ $`docker ps`
     93c0c07c9edd        mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
 
 **Next copy your Database from your host machine to the container**
+
 $`docker cp dump.sql 93c0:/var/opt/mssql`
 
 **shell into the container**
@@ -49,6 +52,7 @@ $ `docker exec -it 93c0 bash`
 If this succeeds you should be able to make a connection with DBeaver and check your database now.
 
 Or check the database from the container using MSSQL
+
 $ `docker exec -it 93c0/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'asdf1234$$$$'`
 
     1> use test
