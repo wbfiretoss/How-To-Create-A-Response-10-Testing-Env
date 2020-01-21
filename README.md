@@ -47,3 +47,33 @@ $ `docker exec -it 93c0 bash`
     /opt/mssql-tools/bin/sqlcmd -S localhost -d test -U sa -P 'asdf1234$$$$' -i dump.sql -o results.txt
 
 If this succeeds you should be able to make a connection with DBeaver and check your database now.
+
+Or check the database from the container using MSSQL
+$ `docker exec -it 93c0/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'asdf1234$$$$'`
+
+    1> use test
+    2> go
+    Changed database context to 'test'.
+    1> SELECT Distinct TABLE_NAME FROM information_schema.TABLES
+    2> go
+    TABLE_NAME                                                                                                                      
+    --------------------------------------------------------------------------------------------------------------------------------
+    CATEGINV                                                                                                                        
+    CATEGORY                                                                                                                        
+    CUSTDIV                                                                                                                         
+    FINDER                                                                                                                          
+    INVENTOR                                                                                                                        
+    LINEITEM                                                                                                                        
+    MASMEDIA                                                                                                                        
+    ORD_D                                                                                                                           
+    PRODCLAS                                                                                                                        
+    RELITEM                                                                                                                         
+    SERVICE                                                                                                                         
+    SHIPTO                                                                                                                          
+    SYSCUST                                                                                                                         
+    SYSOENT                                                                                                                         
+    
+    (14 rows affected)
+
+
+
